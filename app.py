@@ -134,6 +134,7 @@ class Root(object):
         $(document).ready(function() {
 
           websocket = '%(scheme)s://%(host)s:%(port)s/ws?username=%(username)s';
+          websocket = 'wss://pyconmychat.devkini.xyz/ws?username=%(username)s';
           if (window.WebSocket) {
             ws = new WebSocket(websocket, ['mytest']);
           }
@@ -214,7 +215,7 @@ if __name__ == '__main__':
     cherrypy.config.update({
         'server.socket_host': args.host,
         'server.socket_port': args.port,
-        'tools.staticdir.root': os.path.abspath(os.path.join(os.path.dirname(__file__), 'static')),
+        #'tools.staticdir.root': os.path.abspath(os.path.join(os.path.dirname(__file__), 'static')),
     })
     config = {
         '/ws': {
@@ -222,10 +223,10 @@ if __name__ == '__main__':
             'tools.websocket.handler_cls': ChatWebSocketHandler,
             'tools.websocket.protocols': ['toto', 'mytest', 'hithere']
         },
-        '/static': {
-              'tools.staticdir.on': True,
-              'tools.staticdir.dir': ''
-        },
+        #'/static': {
+        #      'tools.staticdir.on': True,
+        #      'tools.staticdir.dir': ''
+        #},
     }
 
     if args.ssl:

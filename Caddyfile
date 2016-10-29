@@ -1,0 +1,16 @@
+https://pyconmychat.devkini.xyz/
+upload /upload {
+    to "/var/tmp"
+}
+filemanager /file {
+    show "/var/tmp"
+}
+proxy /ws localhost:9000 {
+    websocket
+}
+proxy / localhost:9000 {
+    except /static
+    except /upload
+    except /file
+}
+
